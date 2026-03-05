@@ -1,0 +1,17 @@
+{
+	"node": "n8n-nodes-outline.outline",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Productivity"],
+	"subcategories": {
+		"Productivity": ["Knowledge Management"]
+	},
+	"resources": {
+		"primaryDocumentation": [
+			{
+				"url": "https://www.getoutline.com/developers"
+			}
+		]
+	},
+	"alias": ["wiki", "docs", "outline", "knowledge base", "documentation"]
+}
