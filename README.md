@@ -2,7 +2,13 @@
   <img src="nodes/Outline/outline.svg" width="80" alt="Outline" />
 </p>
 
-<h1 align="center">n8n-nodes-outline</h1>
+<h1 align="center">@diyrex/n8n-nodes-outline</h1>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@diyrex/n8n-nodes-outline"><img src="https://img.shields.io/npm/v/@diyrex/n8n-nodes-outline.svg?style=flat-square" alt="npm version" /></a>
+  <a href="https://www.npmjs.com/package/@diyrex/n8n-nodes-outline"><img src="https://img.shields.io/npm/dm/@diyrex/n8n-nodes-outline.svg?style=flat-square" alt="npm downloads" /></a>
+  <a href="https://github.com/DiyRex/outline-n8n-node/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@diyrex/n8n-nodes-outline.svg?style=flat-square" alt="license" /></a>
+</p>
 
 <p align="center">
   <strong>n8n community node for <a href="https://www.getoutline.com/">Outline</a> wiki API</strong><br/>
@@ -16,15 +22,16 @@
 ### Self-Hosted n8n (GUI)
 
 1. Go to **Settings → Community Nodes**
-2. Enter: `n8n-nodes-outline`
+2. Enter: `@diyrex/n8n-nodes-outline`
 3. Click **Install**
 4. Restart n8n
 
 ### Self-Hosted n8n (CLI)
 
 ```bash
-cd ~/.n8n/nodes
-npm install n8n-nodes-outline
+mkdir -p ~/.n8n/nodes && cd ~/.n8n/nodes
+npm init -y
+npm install @diyrex/n8n-nodes-outline
 # Restart n8n
 ```
 
@@ -32,7 +39,10 @@ npm install n8n-nodes-outline
 
 ```dockerfile
 FROM n8nio/n8n:latest
-RUN cd /usr/local/lib/node_modules/n8n && npm install n8n-nodes-outline
+RUN mkdir -p /home/node/.n8n/nodes && \
+    cd /home/node/.n8n/nodes && \
+    npm init -y && \
+    npm install @diyrex/n8n-nodes-outline
 ```
 
 Or with docker-compose:
@@ -44,21 +54,21 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
     environment:
-      - N8N_CUSTOM_EXTENSIONS=/home/node/.n8n/nodes/node_modules/n8n-nodes-outline
+      - N8N_CUSTOM_EXTENSIONS=/home/node/.n8n/nodes/node_modules/@diyrex/n8n-nodes-outline
 ```
 
 ### Development (Local Testing)
 
 ```bash
-git clone https://github.com/DiyRex/n8n-nodes-outline.git
-cd n8n-nodes-outline
+git clone https://github.com/DiyRex/outline-n8n-node.git
+cd outline-n8n-node
 npm install
 npm run build
 npm link
 
-# In your n8n installation
-cd ~/.n8n/nodes
-npm link n8n-nodes-outline
+# In your n8n data directory
+mkdir -p ~/.n8n/nodes && cd ~/.n8n/nodes
+npm link @diyrex/n8n-nodes-outline
 # Restart n8n
 ```
 
@@ -191,3 +201,4 @@ MIT
 - [Outline API Documentation](https://www.getoutline.com/developers)
 - [n8n Community Nodes](https://docs.n8n.io/integrations/community-nodes/)
 - [Outline CLI](https://github.com/DiyRex/outline-cli) — companion CLI tool
+- [npm Package](https://www.npmjs.com/package/@diyrex/n8n-nodes-outline)
