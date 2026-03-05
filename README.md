@@ -2,7 +2,7 @@
   <img src="nodes/Outline/outline.svg" width="80" alt="Outline" />
 </p>
 
-<h1 align="center">@diyrex/n8n-nodes-outline</h1>
+<h1 align="center">n8n-node-outline</h1>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@diyrex/n8n-nodes-outline"><img src="https://img.shields.io/npm/v/@diyrex/n8n-nodes-outline.svg?style=flat-square" alt="npm version" /></a>
