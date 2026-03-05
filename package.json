@@ -1,0 +1,47 @@
+{
+	"name": "@diyrex/n8n-nodes-outline",
+	"version": "0.1.0",
+	"description": "n8n community node for Outline wiki API — documents, collections, users, groups, comments, shares, search, and events",
+	"license": "MIT",
+	"homepage": "https://github.com/DiyRex/n8n-nodes-outline",
+	"author": {
+		"name": "DiyRex"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DiyRex/n8n-nodes-outline.git"
+	},
+	"keywords": [
+		"n8n-community-node-package"
+	],
+	"main": "index.js",
+	"scripts": {
+		"build": "tsc && gulp build:icons",
+		"dev": "tsc --watch",
+		"lint": "eslint nodes credentials --ext .ts",
+		"lint:fix": "eslint nodes credentials --ext .ts --fix",
+		"prepublishOnly": "npm run build"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"credentials": [
+			"dist/credentials/OutlineApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Outline/Outline.node.js"
+		]
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.0",
+		"eslint": "^8.56.0",
+		"gulp": "^4.0.2",
+		"n8n-workflow": "^1.22.0",
+		"typescript": "^5.3.3"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
