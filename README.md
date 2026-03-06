@@ -97,7 +97,9 @@ npm link @diyrex/n8n-nodes-outline
 | Search | Full-text search across documents |
 | Archive | Archive a document |
 | Restore | Restore an archived document |
-| Export | Export document content as markdown |
+| Export | Export document content |
+| Drafts | List draft documents |
+| Viewed | List recently viewed documents |
 
 ### Collection
 | Operation | Description |

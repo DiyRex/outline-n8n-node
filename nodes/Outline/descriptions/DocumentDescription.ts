@@ -13,12 +13,14 @@ export const documentOperations: INodeProperties[] = [
 			{ name: 'Archive', value: 'archive', action: 'Archive a document', description: 'Archive a document' },
 			{ name: 'Create', value: 'create', action: 'Create a document', description: 'Create a new document' },
 			{ name: 'Delete', value: 'delete', action: 'Delete a document', description: 'Delete a document' },
-			{ name: 'Export', value: 'export', action: 'Export a document', description: 'Export document content as markdown' },
+			{ name: 'Drafts', value: 'drafts', action: 'Get draft documents', description: 'List draft documents' },
+			{ name: 'Export', value: 'export', action: 'Export a document', description: 'Export document content' },
 			{ name: 'Get', value: 'get', action: 'Get a document', description: 'Retrieve a document by ID' },
 			{ name: 'Get Many', value: 'getMany', action: 'Get many documents', description: 'List documents' },
 			{ name: 'Restore', value: 'restore', action: 'Restore a document', description: 'Restore an archived document' },
 			{ name: 'Search', value: 'search', action: 'Search documents', description: 'Full-text search across documents' },
 			{ name: 'Update', value: 'update', action: 'Update a document', description: 'Update an existing document' },
+			{ name: 'Viewed', value: 'viewed', action: 'Get viewed documents', description: 'List recently viewed documents' },
 		],
 		default: 'get',
 	},
@@ -133,8 +135,8 @@ export const documentFields: INodeProperties[] = [
 				displayName: 'Publish',
 				name: 'publish',
 				type: 'boolean',
-				default: true,
-				description: 'Whether to publish the document',
+				default: false,
+				description: 'Whether to publish the document (set to true to publish a draft)',
 			},
 		],
 	},
@@ -191,14 +193,14 @@ export const documentFields: INodeProperties[] = [
 		],
 	},
 
-	// ------ Get Many ------
+	// ------ Get Many / Drafts / Viewed ------
 	{
 		displayName: 'Return All',
 		name: 'returnAll',
 		type: 'boolean',
 		default: false,
 		displayOptions: {
-			show: { resource: ['document'], operation: ['getMany'] },
+			show: { resource: ['document'], operation: ['getMany', 'drafts', 'viewed'] },
 		},
 		description: 'Whether to return all results or only up to a limit',
 	},
@@ -209,7 +211,7 @@ export const documentFields: INodeProperties[] = [
 		typeOptions: { minValue: 1, maxValue: 100 },
 		default: 25,
 		displayOptions: {
-			show: { resource: ['document'], operation: ['getMany'], returnAll: [false] },
+			show: { resource: ['document'], operation: ['getMany', 'drafts', 'viewed'], returnAll: [false] },
 		},
 		description: 'Max number of results to return',
 	},

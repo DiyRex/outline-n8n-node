@@ -116,7 +116,7 @@ export class Outline implements INodeType {
 						const title = this.getNodeParameter('title', i) as string;
 						const collectionId = this.getNodeParameter('collectionId', i) as string;
 						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as Record<string, any>;
-						const body: Record<string, any> = { title, collectionId, ...additionalFields };
+						const body: Record<string, any> = { title, collectionId, publish: true, ...additionalFields };
 						const response = await outlineApiRequest.call(this, 'documents.create', body);
 						responseData = response.data;
 					}
@@ -160,8 +160,30 @@ export class Outline implements INodeType {
 
 					if (operation === 'export') {
 						const documentId = this.getNodeParameter('documentId', i) as string;
-						const response = await outlineApiRequest.call(this, 'documents.info', { id: documentId });
-						responseData = { title: response.data.title, text: response.data.text };
+						const response = await outlineApiRequest.call(this, 'documents.export', { id: documentId });
+						responseData = response.data;
+					}
+
+					if (operation === 'drafts') {
+						const returnAll = this.getNodeParameter('returnAll', i) as boolean;
+						if (returnAll) {
+							responseData = await outlineApiRequestAllItems.call(this, 'documents.drafts', {});
+						} else {
+							const limit = this.getNodeParameter('limit', i) as number;
+							const response = await outlineApiRequest.call(this, 'documents.drafts', { limit, offset: 0 });
+							responseData = response.data;
+						}
+					}
+
+					if (operation === 'viewed') {
+						const returnAll = this.getNodeParameter('returnAll', i) as boolean;
+						if (returnAll) {
+							responseData = await outlineApiRequestAllItems.call(this, 'documents.viewed', {});
+						} else {
+							const limit = this.getNodeParameter('limit', i) as number;
+							const response = await outlineApiRequest.call(this, 'documents.viewed', { limit, offset: 0 });
+							responseData = response.data;
+						}
 					}
 				}
 
@@ -293,7 +315,7 @@ export class Outline implements INodeType {
 						const documentId = this.getNodeParameter('documentId', i) as string;
 						const text = this.getNodeParameter('text', i) as string;
 						const additionalFields = this.getNodeParameter('additionalFields', i, {}) as Record<string, any>;
-						const body: Record<string, any> = { documentId, data: { text }, ...additionalFields };
+						const body: Record<string, any> = { documentId, text, ...additionalFields };
 						const response = await outlineApiRequest.call(this, 'comments.create', body);
 						responseData = response.data;
 					}
